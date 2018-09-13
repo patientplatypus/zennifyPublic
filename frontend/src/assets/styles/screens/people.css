@@ -1,0 +1,38 @@
+.people{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "explorer explorer profile profile profile profile profile message message message"/*1*/
+        "explorer explorer profile profile profile profile profile message message message"/*2*/
+        "explorer explorer profile profile profile profile profile message message message"/*3*/
+        "explorer explorer profile profile profile profile profile message message message"/*4*/
+        "explorer explorer profile profile profile profile profile message message message"/*5*/
+        "explorer explorer profile profile profile profile profile message message message"/*6*/
+        "explorer explorer profile profile profile profile profile message message message"/*7*/
+        "explorer explorer profile profile profile profile profile message message message"/*8*/
+        "explorer explorer profile profile profile profile profile message message message"/*9*/
+        "explorer explorer profile profile profile profile profile message message message";/*10*/
+    overflow: hidden;
+    pointer-events: none;    
+}
+
+.peopleExplorer{
+    grid-area: explorer;
+    pointer-events: all;
+    position: relative;
+}
+
+.peopleProfile{
+    grid-area: profile;
+    pointer-events: all;
+    position: relative;
+}
+
+.peopleMessage{
+    grid-area: message;
+    pointer-events: all;
+    position: relative;
+}

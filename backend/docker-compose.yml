@@ -1,0 +1,60 @@
+version: "3"  
+services:  
+  cassandra00:
+    restart: always
+    build: ./db/cassDocker
+    # image: cassandra:latest
+    volumes: 
+      - ./db/casdata:/var/lib/cassandra
+      # - ./db/cassentry:/docker-entrypoint-initdb.d
+      # - ./db/cassinit/init.sh:/init.sh
+    ports: 
+      - 7000:7000
+      - 7001:7001
+      - 7199:7199
+      - 9042:9042
+      - 9160:9160
+    environment:
+      - CASSANDRA_START_RPC=true
+    # command: ["/init.sh"]
+  db:
+    restart: always
+    build: ./db/pgDocker
+    environment:
+      POSTGRES_USER: patientplatypus 
+      POSTGRES_PASSWORD: Fvnjty0b
+      POSTGRES_DB: zennify
+    expose:
+      - "5432"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
+    # command: ["./wait-for-it.sh", "cassandra00:9042", "--", "python", "app.py"]
+    # can chain waits but i dont know what the command should be to build the postgres image
+  app:
+    restart: always
+    # restart: on-failure
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c 'sleep 120; realize start --run'
+    # command: 'realize start --run'
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 100; done; realize start --run'
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 20; done; go run main.go'
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - cassandra00
+    links:
+      - db
+      - cassandra00
+    volumes:
+      - ./:/go/src/github.com/patientplatypus/webserver/
+
+#networks don't appear to do anything so i commented them out
+
+# this command
+# command: ["./wait-for-postgres.sh", "db", "go", "run", "bot.go"]
+# causes runtime error OCI runtime even when i set chmod+x wait-for-postgres.sh

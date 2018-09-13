@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Norican|Reenie+Beanie|Megrim');
+
+
+:root{
+    /* colors */
+    /* https://coolors.co/001514-fbfffe-216869-49a078-820933 */
+    --primary1: #001514;
+    --primary2: #fbfffe;
+    --secondary1: rgb(33, 104, 105);
+    --secondary2: rgb(73, 160, 120);
+    --attention: rgb(128, 8, 50);
+    --attention-opacity-05: rgb(128, 8, 50, 0.5);
+    /* typography */
+    --headerFont: 'Megrim', cursive;
+    --alertFont: 'Reenie Beanie', cursive;
+    --primaryFont: 'Raleway', sans-serif;
+    --secondaryFont: 'Open Sans', sans-serif;
+    --turtleFont: 'Norican', cursive;
+    --fontSize00:0rem;
+    --fontSize0: 0.8rem;
+    --fontSize1: 1rem;
+    --fontSize2: 1.2rem;
+    --fontSize2select: 1.4vw;
+    --fontSize3: 1.5rem;
+    --fontSize4: 2rem;
+    --fontSize5: 4rem;
+    --fontWeightHeavy: 900;
+    /* spacing */
+    --height1: 5vh;
+    --navHeight: 3vh;
+    /* button */
+    --button-width: auto;
+    --button-padding: 0.1rem 1rem 0.1rem 1rem;
+    --button-margin-bottom: 0.25rem;
+    --button-border-radius: 1vw;
+    --button-border-color: var(--primary1);
+    /* --button-border- */
+    /* input */
+    --input-font-weight-1: var(--fontWeightHeavy);
+    --input-font-family-1: var(--primaryFont);
+    --input-width-1: 25vw;
+    --input-font-size-1: var(--fontSize2);
+    --input-height-1: calc(1.1*var(--input-font-size-1));
+    --input-padding-1: calc(.1*var(--input-font-size-1)) 0;
+    --input-border-width-1: calc(.2*var(--input-font-size-1));
+    --input-border-color-1: var(--secondary2);
+    /* card */
+    --card-background-1: var(--primary2);
+    --card-font-1: var(--secondaryFont); 
+    --card-font-size-1: calc( 2.75vh );
+    --card-padding-1: 0rem 0.5rem 0rem 0.5rem;
+    --card-border-radius-1: 0.5rem;
+    --card-border-style-1: solid;
+    --card-border-width-1: 5px;
+    --card-border-color-1: var(--secondary2);
+    --card-box-shadow-1: calc( 0.5vw ) 5px 5px var(--attention-opacity-05);
+    --card-width-1: 28vw;
+    /* paper */
+    --paper-font-family-1: var(--primaryFont);
+    --paper-background-1: var(--primary2);
+    --paper-color-1: var(--primary1);
+    --paper-boder-radius-1: .1rem;
+    --paper-font-size-1: calc( 2.5vh );
+    --paper-line-height-1: calc( 2.7vh );
+    --paper-width-1: 24vw;
+    --paper-padding-1: 0rem 1vw 0rem 1vw;
+    /* --card-height-1:  */
+    /* selects */
+
+    --select-width-1: 100%;
+    --select-font-family-1: var(--primaryFont);
+    --select-font-size-1: var(--fontSize2select);
+    --select-height-1:  calc(1.1*var(--select-font-size-1));
+    --select-background-1: var(--primary2);
+    --select-font-weight-1: var(--fontWeightHeavy);
+    --select-padding-1:  calc(.1*var(--select-font-size-1)) 0;
+    --select-border-width-1: calc(.12*var(--select-font-size-1));
+    --select-border-color-1: var(--secondary2);
+    /* --select-border-radius-1:   */
+    --option-border-1: 10vw;
+    --option-padding-1: calc(.1*var(--select-font-size-1)) 0;
+    /* other */
+}
+body, html{
+    margin: 0;
+    padding: 0;
+    background: var(--primary1);
+}
+
+.flexbox-container {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+/* body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+body::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+body::-webkit-scrollbar-track { 
+    background-color: #fff; 
+    border-radius: 8px; 
+}  */

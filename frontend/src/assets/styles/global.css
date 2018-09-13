@@ -1,0 +1,72 @@
+
+/* table */
+
+
+/* table */
+
+/* flex */
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: row;
+}
+
+.flexItem1{
+    flex: 1;
+}
+
+.flexItem2{
+    flex: 2;
+}
+
+.flexItem3{
+    flex: 3;
+}
+
+.flexItem4{
+    flex: 4;
+}
+
+.flexItem5{
+    flex: 5;
+}
+
+.flexItem6{
+    flex: 6;
+}
+
+.flexItem7{
+    flex: 7;
+}
+
+.flexItem8{
+    flex: 1;
+}
+
+.flexItem8{
+    flex: 8;
+}
+
+.flexItem9{
+    flex: 9;
+}
+
+.flexItem10{
+    flex: 10;
+}
+
+.flexItem11{
+    flex: 11;
+}
+
+.flexItem12{
+    flex: 12;
+}
+
+/* flex */
+
+

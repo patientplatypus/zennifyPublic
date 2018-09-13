@@ -1,0 +1,36 @@
+.button1{
+    display: inline-block;
+    word-wrap: none;
+    white-space: nowrap;
+    text-align: center;
+    border-style: solid;
+    font-weight: var(--fontWeightHeavy);
+    font-size: var(--fontSize1);
+    font-family: var(--primaryFont);
+    /* color: var(--attention); */
+    background: var(--secondary2);
+    border-radius: var(--button-border-radius);
+    border-color: var(--secondary1);
+    width: var(--button-width);
+    margin-bottom: var(--button-margin-bottom);
+    /* height: var(--button-height); */
+    color: transparent;
+    text-shadow: 0 0 0  var(--attention);
+    padding: var(--button-padding);
+}
+
+.button1:focus {
+    outline:0;
+}
+
+.button1:hover{
+    cursor: pointer;
+    background: rgb(63, 150, 105);
+}
+
+.button1:active, .button1.toggled{
+    /* color: var(--secondary2); */
+    background: var(--attention);
+    color: transparent;
+    text-shadow: 0 0 0  var(--secondary2);
+}

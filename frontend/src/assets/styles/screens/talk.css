@@ -1,0 +1,43 @@
+.talk{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "header header header posts posts posts . . . ."/*1*/
+        "channels channels channels posts posts posts . . . ."/*2*/
+        "channels channels channels posts posts posts . . . ."/*3*/
+        "channels channels channels posts posts posts . . . ."/*4*/
+        "channels channels channels posts posts posts . . . ."/*5*/
+        "channels channels channels posts posts posts . . . ."/*6*/
+        "channels channels channels posts posts posts . . . ."/*7*/
+        "feed feed feed posts posts posts . . . ."/*8*/
+        "feed feed feed posts posts posts . . . ."/*9*/
+        "feed feed feed posts posts posts . . . .";/*10*/
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.talkHeader{
+    pointer-events: all;
+    grid-area: header;
+}
+.talkChannels{
+    pointer-events: all;
+    grid-area: channels;
+    position: relative;
+    background: red;
+}
+.talkPosts{
+    pointer-events: all;
+    grid-area: posts;
+    position: relative;
+    background: purple;
+}
+.talkFeed{
+    pointer-events: all;
+    grid-area: feed;
+    background: orange;
+}

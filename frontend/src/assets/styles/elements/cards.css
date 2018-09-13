@@ -1,0 +1,33 @@
+.card1{ 
+    font-family: var(--card-font-1);
+    font-size: var(--card-font-size-1);
+    background: var(--card-background-1);
+    padding: var(--card-padding-1);
+    border-radius: var(--card-border-radius-1);
+    border-style: var(--card-border-style-1);
+    border-width: var(--card-border-width-1);
+    border-color: var(--card-border-color-1);
+    box-shadow: var(--card-box-shadow-1);
+    width: var(--card-width-1);
+}
+
+.card1 p{
+    line-height: calc( 2.5vh );
+    font-size: calc( 2.5vh );
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    line-height: calc( 3vh );
+    font-size: calc( 2.5vh );
+}
+
+.card1Header{
+    font-size: calc( 1.7vw );
+    line-height: calc( 3vh );
+}
+
+.card1 h2{
+    line-height: calc( 2vh )
+}

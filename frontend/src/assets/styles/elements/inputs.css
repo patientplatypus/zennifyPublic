@@ -1,0 +1,38 @@
+
+.input1{
+    width: var(--input-width-1);
+    height: var(--input-height-1);
+    padding: var(--input-padding-1);
+    font-size: var(--input-font-size-1);
+    font-family: var(--input-font-family-1);
+    font-weight: var(--input-font-weight-1);
+    border-width: var(--input-border-width-1);
+    border-color: var(--input-border-color-1);
+}
+
+input[type=text], textarea {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    border-width: var(--input-border-width-1);
+    border-color: var(--input-border-color-1);
+  }
+   
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px var(--secondary2);
+    border-width: var(--input-border-width-1);  
+    border-color: var(--input-border-color-1);
+}
+
+.textArea1{
+    width: var(--input-width-1);
+    height: var(--input-height-1);
+    padding: var(--input-padding-1);
+    font-size: var(--input-font-size-1);
+    font-family: var(--input-font-family-1);
+    font-weight: var(--input-font-weight-1);
+    border-width: var(--input-border-width-1);
+    border-color: var(--input-border-color-1);
+}

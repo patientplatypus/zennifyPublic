@@ -1,0 +1,60 @@
+
+.home{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "header header header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*1*/
+        "header header header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*2*/
+        "whatis whatis whatis blogpaper blogpaper blogpaper blogpaper extra extra extra"/*3*/
+        "whatis whatis whatis blogpaper blogpaper blogpaper blogpaper extra extra extra"/*4*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*5*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*6*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*7*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*8*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*9*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap";/*10*/
+    overflow: hidden;
+}
+
+.homeHeader {
+    grid-area: header;
+}
+
+.homeWhatis {
+    grid-area: whatis;
+}
+
+.homeSitemap {
+    grid-area: sitemap;
+}
+
+.boldListItem{
+    font-weight: 900;
+}
+
+.homeBlogpaper{
+    grid-area: blogpaper;
+}
+
+.homeDirections{
+    grid-area: directions;
+}
+
+.homeExtra{
+    grid-area: extra;
+}
+
+/* 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+} */

@@ -1,0 +1,31 @@
+.paper1{
+    background: var(--paper-background-1);
+    color: var(--paper-color-1);
+    border-radius: var(--paper-border-radius-1);
+    font-family: var(--paper-font-family-1);
+    font-size:var(--paper-font-size-1);
+    line-height:var(--paper-line-height-1);
+    padding: var(--paper-padding-1);
+    /* width: var(--paper-width-1); */
+}
+
+.paper1 p{
+    line-height: calc( 2.5vh );
+    font-size: calc( 2.5vh );
+    margin: 0;
+    padding: 0;
+}
+
+.paper1 h3{
+    line-height: calc( 2.2rem );
+    margin: 0;
+    padding: 0;
+}
+
+.paper1 h2{
+    line-height: calc( 2.2rem );
+    margin: 0;
+    padding: 0;
+    margin-top: 2vh;
+}
+

@@ -1,0 +1,127 @@
+
+/* routerLink */
+
+.routerLink{
+    text-decoration: none;
+    color: var(--primary1);
+    font-family: var(--primaryFont);
+    font-size: 1.75vw;
+}
+
+/* routerLink */
+
+
+/* navMenu */
+
+.navMenuTitleBanner{
+    position:fixed;
+    z-index: 3;
+    top: 0;
+    left: 0vw;
+    width: 40vw;
+    height: var(--navHeight);
+    background: var(--primary2);
+}
+
+.navMenuTable{
+    position:fixed;
+    top: 0;
+    z-index: 2;
+    background: var(--primary2);
+    color: var(--primary1);
+    height: var(--navHeight);
+    width: 40vw;
+    margin-left: 60vw;
+    line-height: 0;
+    padding-bottom: 0.2rem;
+}
+
+.extraWhiteSpace{
+    position:fixed;
+    top: 0;
+    z-index: 1;
+    left: 40vw;
+    width: 20vw;
+    height: var(--navHeight);
+    background: var(--primary2);
+}
+
+.tableRowSmall{
+    padding-top: 0.25rem;
+}
+
+.hamburger{
+    height: calc(var(--navHeight) - 1rem);
+    padding-top: 0.25rem;
+    width: 10vw;
+    background: var(--attention);
+    clip-path: polygon(0 100%, 0 0, 100% 0);
+}
+
+@media only screen and (max-width: 500px) {
+    .tableRowBig{
+       display: none;
+       height: 0;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .tableRowSmall{
+       display: none;
+       height: 0;
+    }
+}
+
+/* navMenu */
+
+/* splashSign */
+
+.splashSign{
+    background: -webkit-linear-gradient(var(--primary1), var(--secondary2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family: var(--headerFont);
+    font-size: calc( var(--navHeight) );
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* splashSign */
+
+
+  /* highlightnav */
+
+  .highlightNav{
+    clip-path: polygon(0 100%, 0 0, 100% 0);
+    height: var(--navHeight);
+    width: auto;
+    /* background: green; */
+    /* background-color: linear-gradient(to top left, var(--attention), transparent); */
+    background: var(--attention)
+}
+
+.fadeInNav{
+    animation-name: navFadeInKey;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.fadeOutNav{
+    animation-name: navFadeOutKey;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes navFadeInKey {
+    0%   {opacity: 0}
+    100% {opacity: 0.5}
+}
+
+@keyframes navFadeOutKey {
+    0%   {opacity: 0.5}
+    100% {opacity: 0}
+}
+
+/* highlightnav */

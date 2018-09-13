@@ -1,0 +1,169 @@
+
+.me{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*1*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*2*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*3*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*4*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*5*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*6*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*7*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*8*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*9*/
+        "directions directions directions blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap";/*10*/
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.me.profile{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "navi navi navi profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*1*/
+        "navi navi navi profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*2*/
+        "navi navi navi profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*3*/
+        "navi navi navi profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*4*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*5*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*6*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*7*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*8*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper"/*9*/
+        ". . . profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper profilePaper";/*10*/
+    overflow: hidden;
+    pointer-events: none;    
+}
+
+.meProfilePaper{
+    grid-area: profilePaper;
+    pointer-events: all;
+    position: relative;
+}
+
+.me.health{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*1*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*2*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*3*/
+        "navi navi header blogpaper blogpaper blogpaper blogpaper extra extra extra"/*4*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*5*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*6*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*7*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*8*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap"/*9*/
+        "healthMenu healthMenu healthMenu blogpaper blogpaper blogpaper blogpaper sitemap sitemap sitemap";/*10*/
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.me.money{
+    display: grid;
+    grid-gap: 1vh 1vw;
+    grid-template-columns: 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw 9vw; 
+    grid-template-rows:  calc( var(--navHeight) + 1vh) 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh 9vh calc( 7vh - var(--navHeight)); 
+    grid-template-areas: 
+        ". . . . . . . . . ." 
+        "navi navi header moneyMainScreen moneyMainScreen moneyMainScreen moneyGraphBox moneyGraphBox moneyGraphBox moneyGraphBox"/*1*/
+        "navi navi header moneyMainScreen moneyMainScreen moneyMainScreen moneyGraphBox moneyGraphBox moneyGraphBox moneyGraphBox"/*2*/
+        "navi navi header moneyMainScreen moneyMainScreen moneyMainScreen moneyGraphBox moneyGraphBox moneyGraphBox moneyGraphBox"/*3*/
+        "navi navi header moneyMainScreen moneyMainScreen moneyMainScreen moneyGraphBox moneyGraphBox moneyGraphBox moneyGraphBox"/*4*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyGraphBox moneyGraphBox moneyGraphBox moneyGraphBox"/*5*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyTimeBox moneyTimeBox moneyTimeBox moneyTimeBox"/*6*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyTimeBox moneyTimeBox moneyTimeBox moneyTimeBox"/*7*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyTimeBox moneyTimeBox moneyTimeBox moneyTimeBox"/*8*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyTimeBox moneyTimeBox moneyTimeBox moneyTimeBox"/*9*/
+        "moneyMenu moneyMenu moneyMenu moneyMainScreen moneyMainScreen moneyMainScreen moneyTimeBox moneyTimeBox moneyTimeBox moneyTimeBox";/*10*/
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.me.stuff{
+    
+}
+
+.me.social{
+    
+}
+
+.me.chores{
+    
+}
+
+
+.meNavi {
+    pointer-events: all;
+    grid-area: navi;
+}
+
+/* .homeWhatis {
+    grid-area: whatis;
+} */
+
+.meHealthMenu{
+    pointer-events: all;
+    grid-area: healthMenu;
+}
+
+.meMoneyMenu{
+    pointer-events: all;
+    grid-area: moneyMenu;
+}
+
+.meMoneyMainScreen{
+    pointer-events: all;
+    grid-area: moneyMainScreen;
+}
+
+.meMoneyTimeBox{
+    pointer-events: all;
+    grid-area: moneyTimeBox;
+}
+
+.meMoneyGraphBox{
+    pointer-events: all;
+    grid-area: moneyGraphBox;  
+}
+
+.homeSitemap {
+    grid-area: sitemap;
+}
+
+.boldListItem{
+    font-weight: 900;
+}
+
+.homeBlogpaper{
+    grid-area: blogpaper;
+}
+
+.homeDirections{
+    grid-area: directions;
+}
+
+.homeExtra{
+    grid-area: extra;
+}
+
+/* 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+} */

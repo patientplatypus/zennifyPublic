@@ -1,0 +1,35 @@
+.selectBox1{
+    height: var(--select-height-1);
+    width: var(--select-width-1);
+    background: var(--select-background-1);
+    padding: var(--select-padding-1);
+    border-width: var(--select-border-width-1);
+    border-color: var(--select-border-color-1);
+    border-style: solid;
+    border-radius: var(--select-border-radius-1);
+    font-family: var(--select-font-family-1);
+    font-weight: var(--select-font-weight-1);
+    overflow: visible;
+    font-size: var(--select-font-size-1);
+}
+
+.optionBox1{
+    width: var(--option-width-1);
+    /* padding: var(--option-padding-1); */
+    height:  var(--select-height-1);
+    border-width: var(--select-border-width-1);
+    border-color: var(--select-border-color-1);
+    border-style: solid;
+    background: var(--select-background-1);
+    border-radius: var(--select-border-radius-1);
+    /* cursor: pointer; */
+}
+
+.selectStick{
+    width: var(--select-width-1);
+    height: var(--select-border-width-1);
+    background: var(--secondary2);
+    position: absolute;
+    z-index: 2;
+    top: calc(1.3*var(--select-font-size-1))
+}
