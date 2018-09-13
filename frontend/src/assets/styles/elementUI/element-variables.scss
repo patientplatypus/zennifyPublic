@@ -1,0 +1,10 @@
+
+
+/* Change the subject color variable*/
+$--color-primary: rgb(73, 160, 120);
+
+/* It is necessary to change the icon font path variable*/
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+

@@ -5,6 +5,13 @@
       Blog
     </h2>
     <h3>
+      September 13, 2018
+    </h3>
+    <p>
+      Morning - released blog on linkedin! Working on getting first entry up on an easy slider.
+    </p>
+    <br/>
+    <h3>
       September 12, 2018
     </h3>
     <p>

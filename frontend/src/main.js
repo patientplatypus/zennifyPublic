@@ -6,13 +6,18 @@ import App from './App'
 
 import store from './store'
 import router from './routes'
-import VueWorker from 'vue-worker';
+import VueWorker from 'vue-worker'
+import Element from 'element-ui'
+
+import './assets/styles/root.css';
+import './assets/styles/global.css';
+import '../src/assets/styles/elementUI/element-variables.scss'
 
 Vue.use(VueWorker);
+Vue.use(Element);
 
 
 Vue.config.productionTip = false;
-
 
 /* eslint-disable no-new */
 var vm = new Vue({

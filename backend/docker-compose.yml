@@ -5,7 +5,7 @@ services:
     build: ./db/cassDocker
     # image: cassandra:latest
     volumes: 
-      - ./db/casdata:/var/lib/cassandra
+      - ./db/cassdata:/var/lib/cassandra
       # - ./db/cassentry:/docker-entrypoint-initdb.d
       # - ./db/cassinit/init.sh:/init.sh
     ports: 
@@ -21,8 +21,8 @@ services:
     restart: always
     build: ./db/pgDocker
     environment:
-      POSTGRES_USER: patientplatypus 
-      POSTGRES_PASSWORD: Fvnjty0b
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: docker
       POSTGRES_DB: zennify
     expose:
       - "5432"

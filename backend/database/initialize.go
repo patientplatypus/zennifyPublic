@@ -17,7 +17,7 @@ var db *sql.DB
 func InitDB() {
 	var err error
 
-	db, err = sql.Open("postgres", "host=db port=5432 user=patientplatypus password=SUPERSECRETFAKEPASSWORDUPD00T dbname=zennify sslmode=disable")	
+	db, err = sql.Open("postgres", "host=db port=5432 user=docker password=docker dbname=zennify sslmode=disable")	
 	fmt.Println("value of db: ", db);
 
     if err != nil {

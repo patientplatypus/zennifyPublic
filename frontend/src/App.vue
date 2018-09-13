@@ -166,8 +166,10 @@
 
 <style>
   /* general */
-  @import './assets/styles/root.css';
-  @import './assets/styles/global.css';
+  /* @import './assets/styles/root.css';
+  @import './assets/styles/global.css'; */
+  /* elementUI
+  @import './assets/styles/elementUI/element-variables.scss'; */
   /* elements */
   @import './assets/styles/elements/screenSize.css';
   @import './assets/styles/elements/buttons.css';
@@ -182,6 +184,7 @@
   @import './assets/styles/elements/radio.css';
   /* sheet */
   @import './assets/styles/app.css';
+
 
 
 </style>
