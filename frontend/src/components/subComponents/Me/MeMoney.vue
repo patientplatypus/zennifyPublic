@@ -128,9 +128,7 @@
                         </td>
                         <td width='60%' :style="{textAlign: 'center', outline: 'none'}">
                             <!-- <input class='slider' step="0.1" min="0" max="30" type='range' v-model="interestSlider">  -->
-                            <el-slider 
-                            :step="0.1" :min="0" :max="30" 
-                            :show-tooltip="true" v-model="interestSlider"></el-slider>
+                            <el-slider :step="0.1" :min="0" :max="30"  v-model="interestSlider"></el-slider>
                         </td>
                     </tr>
                     <tr v-if="selectValues.loanType==='new loan'&&selectValues.expenseType==='loan'" class="spaceUnder">
