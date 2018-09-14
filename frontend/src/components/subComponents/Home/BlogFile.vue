@@ -10,6 +10,9 @@
     <p>
       Morning - released blog on linkedin! Working on getting first entry up on an easy slider.
     </p>
+    <p>
+      Evening - added in some ui library stuff and worked on first blog entry. finish and release that tomorrow and go on to more messaging/cassandra stuff.
+    </p>
     <br/>
     <h3>
       September 12, 2018
