@@ -155,7 +155,7 @@ export default {
     
     // const checkLoggedInFunc = () => {
     //   if (this.loggedIn === true){
-    //     WebAssembly.instantiateStreaming(fetch('http://localhost:8000/files/add'))
+        // WebAssembly.instantiateStreaming(fetch('http://localhost:8000/files/add'))
     //     .then(obj => {
     //       this.addFunc = obj.instance.exports.add_one;
     //       console.log('value of this.addFunc: ', this.addFunc(44))    

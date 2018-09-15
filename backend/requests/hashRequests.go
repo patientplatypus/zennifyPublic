@@ -19,6 +19,10 @@ type getHashRet struct{
 	Hashes []string
 }
 
+type newHashRet struct{
+	Status string
+	Message string
+}
 
 
 func NewHashMsg(w http.ResponseWriter, req *http.Request){
@@ -29,8 +33,9 @@ func NewHashMsg(w http.ResponseWriter, req *http.Request){
 	hashRet := <-hashWriteChannel //blocking return
 	fmt.Println("value of hashRet, ", hashRet);
 
-	util.HandleRequestResponse(w, "Success", hashRet)
-
+	// util.HandleRequestResponse(w, "Success", hashRet, JWT: "")
+	response := newHashRet{Status: "Success", Message: hashRet}
+	json.NewEncoder(w).Encode(response)	
 }
 
 func GetHashMsg(w http.ResponseWriter, req *http.Request){

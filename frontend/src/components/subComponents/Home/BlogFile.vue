@@ -5,6 +5,16 @@
       Blog
     </h2>
     <h3>
+      September 14, 2018
+    </h3>
+    <p>
+      Morning - going to finish up blog post then work on next thing here.
+    </p>
+    <p>
+      Evening - finished up blog post and got canvas IPFS up and running. Write another blog post on canvas tomorrow and tweak styling.
+    </p>
+    <br/> 
+    <h3>
       September 13, 2018
     </h3>
     <p>

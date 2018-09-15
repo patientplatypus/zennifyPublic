@@ -18,7 +18,7 @@
         </div>
         <div class="wall">
             <div :style="{position: 'relative', height: '100%', width: '100%', overflow: 'hidden'}">
-                <canvas id="canvas" v-on:mousedown="handleMouseDown" v-on:mouseup="handleMouseUp" v-on:mousemove="handleMouseMove"
+                <canvas class="crayonCursor" id="canvas" v-on:mousedown="handleMouseDown" v-on:mouseup="handleMouseUp" v-on:mousemove="handleMouseMove"
                 :style="{position: 'absolute', zIndex: '1'}"
                 >
                 </canvas>
@@ -125,6 +125,8 @@
 import axios from "axios";
 import IPFS from 'ipfs';
 import { mapGetters, mapActions } from 'vuex';
+
+import '../../sharedComponents/svg/crayon.svg';
 
 export default {
   name: 'MeProfile',
@@ -264,28 +266,49 @@ export default {
         console.log('inside canvasDataSend')
         var c = document.getElementById('canvas');
         var base_image = null;
-        function getCanvasBlob(canvas) {
-            return new Promise(function(resolve, reject) {
-                canvas.toBlob(function(blob) {
-                    resolve(blob)
-                })
-            })
-        }
-        var canvasBlob = getCanvasBlob(c);
+        
+        var ctx = c.getContext("2d");
+        var imgData = ctx.getImageData(0, 0, c.width, c.height);
+        var buffer = imgData.data.buffer;
 
-        console.log('canvasBlob: ', canvasBlob)
-        canvasBlob.then((blob) => {
-            console.log('value of blob: ', blob)
-            this.canvasNode.files.add([Buffer.from(blob)], {pin: true}, (err, filesAdded)=>{
-                if (err) { throw err }  
-                console.log('inside canvasNode.files.add');
-                this.canvasHash = filesAdded[0].hash;
-                console.log('and value of this.canvasHash is .... ', this.canvasHash)
-                this.submitDataRequest(this.canvasHash, "profileCanvas");
-            })
-        }, function(err) {
-            console.log(err)
-        });
+        console.log('value of canvas buffer before adding to ipfs: ', buffer)
+
+        this.canvasNode.files.add(Buffer.from(buffer), {pin: false}, (err, filesAdded)=>{
+            if (err) { throw err }  
+            console.log('inside canvasNode.files.add');
+            this.canvasHash = filesAdded[0].hash;
+            console.log('and value of this.canvasHash is .... ', this.canvasHash)
+            console.log('value of entirety of filesAdded[0]', filesAdded[0])
+            this.submitDataRequest(this.canvasHash, "profileCanvas");
+        })
+
+        // function getCanvasBlob(canvas) {
+        //     return new Promise(function(resolve, reject) {
+        //         canvas.toBlob(function(blob) {
+        //             console.log('inside canvas blob promise')
+        //             console.log('value of blob in promise: ', blob)
+        //             console.log('typeof blob in promise: ', typeof blob)
+        //             resolve(blob)
+        //         })
+        //     })
+        // }
+        // var canvasBlob = getCanvasBlob(c);
+
+        // console.log('canvasBlob: ', canvasBlob)
+        // console.log('typeof canvasBlob: ', typeof canvasBlob)
+        // canvasBlob.then((blob) => {
+        //     console.log('value of blob: ', blob)
+        //     console.log('typeof blob: ', typeof blob)
+        //     this.canvasNode.files.add([Buffer.from(blob)], {pin: true}, (err, filesAdded)=>{
+        //         if (err) { throw err }  
+        //         console.log('inside canvasNode.files.add');
+        //         this.canvasHash = filesAdded[0].hash;
+        //         console.log('and value of this.canvasHash is .... ', this.canvasHash)
+        //         this.submitDataRequest(this.canvasHash, "profileCanvas");
+        //     })
+        // }, function(err) {
+        //     console.log(err)
+        // });
 
 
 
@@ -516,35 +539,46 @@ export default {
                     console.log('this.canvasNode.files')
                     console.log(this.canvasNode.files)
                     this.canvasNode.files.cat(hashVal, (err, data) => {
+                        console.log('inside profile canvasNode file cat')
+                        console.log('and value of data')
+                        console.log(data)
                         if (err) { 
                             console.log('some error in profileCanvas watch')
                             console.log('error; ', err)
                             throw err 
                         }  
-                        console.log('inside profile canvasNode file cat')
-                        console.log('and value of data')
-                        console.log(data)
                         var c = document.getElementById('canvas');
                         var ctx = c.getContext("2d");
+                        var imageData = ctx.createImageData(c.width, c.height);
+                        // imageData.data.set(data);
 
-                        console.log('value of data back to utf8')
-                        console.log(data.toString())
-                        // ctx.putImageData(data, 0, 0)
+                        // console.log('typeof data: ', typeof data);
 
-                        // var readerBlob = new FileReader();      
-                        // readerBlob.onload = function(data){ 
-                        //      var blob = new Blob([data], {type: 'image/jpg'});
-                        //      console.log('value of blob')
-                        //      console.log(blob)
+                        // console.log('**** create image data start ****')
+                        for (var i=0;i < data.length; i+=4) {
+                            // console.log('inside imageData.data loop and...')
+                            imageData.data[i]   = data[i];   //red
+                            // console.log('value of red: ', data[i])
+                            imageData.data[i+1] = data[i+1]; //green
+                            // console.log('value of green: ', data[i+1])
+                            imageData.data[i+2] = data[i+2]; //blue
+                            // console.log('value of blue: ', data[i+2])
+                            imageData.data[i+3] = data[i+3]; //alpha
+                            // console.log('value of alpha: ', data[i+3])
+                        }
+                        console.log('putting imageData to ctx:')
+                        ctx.putImageData(imageData,0,0);
+
+
+
+                        // var imageData = new Image()
+                        // imageData.onload = () => {
+                        //     console.log('inside imageData onload....')
+                        //     imageData = ctx.createImageData(ctx.width, ctx.height);
+                        //     imageData.data.set(data);
                         // }
-
-                        // var url = URL.createObjectURL(data);
-                        // var base_image = new Image();
-                        // base_image.src = url;
-                        // base_image.onload = function(){
-                        //     ctx.drawImage(base_image, 0, 0);
-                        //     URL.revokeObjectURL(url);
-                        // }
+                        // console.log('value of data back to utf8')
+                        // console.log(data.toString())
                     })
                 }else{
                       setTimeout(()=>{
@@ -684,5 +718,10 @@ export default {
     background: red;
     color: white;
 }
+
+.crayonCursor{
+    cursor:url(http://www.cursor.cc/cursor/263/42/cursor.png), auto; 
+}
+
 
 </style>
