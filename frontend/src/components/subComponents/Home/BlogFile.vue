@@ -5,6 +5,15 @@
       Blog
     </h2>
     <h3>
+      September 15, 2018
+    </h3>
+    <p>
+      Morning - getting to work, nothing to report.
+    </p>
+    <p>
+      Evening - half done w/blog post - finish tomorrow and add in loading menu.
+    </p>
+    <h3>
       September 14, 2018
     </h3>
     <p>

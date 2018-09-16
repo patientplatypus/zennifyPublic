@@ -9,6 +9,14 @@ import router from './routes'
 import VueWorker from 'vue-worker'
 import Element from 'element-ui'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSave, faPencilAlt, faPalette, faSplotch, faPaintBrush } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faSave, faPencilAlt, faPalette, faSplotch, faPaintBrush)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 import './assets/styles/root.css';
 import './assets/styles/global.css';
 import '../src/assets/styles/elementUI/element-variables.scss'

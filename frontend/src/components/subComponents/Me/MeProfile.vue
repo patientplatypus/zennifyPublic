@@ -22,62 +22,44 @@
                 :style="{position: 'absolute', zIndex: '1'}"
                 >
                 </canvas>
-                <div :style="{position: 'absolute', zIndex: '4', pointerEvents: 'none', bottom: '0', left: '0'}">
-                    <div class="button1" @click="paintMenuHandler" :style="{pointerEvents: 'all'}">
-                        <p>
-                            {{paintButtonValue}}
-                        </p>
+                <div :style="{position: 'absolute', zIndex: '6', pointerEvents: 'none', bottom: '5px', left: '5px'}">
+                    <div v-if="paintButtonValue==='apply'" @click="paintMenuHandler" :style="{pointerEvents: 'all', cursor: 'pointer'}">
+                        <font-awesome-icon icon="save" size="3x" :style="{color: 'var(--secondary2)'}"/>
+                    </div>
+                    <div v-if="paintButtonValue==='palette'" @click="paintMenuHandler" :style="{pointerEvents: 'all', cursor: 'pointer'}">
+                        <font-awesome-icon icon="palette" size="3x" :style="{color: 'var(--secondary2)'}"/>
                     </div>
                 </div>
                 <div 
                 :class="{'paintMenuOpen':this.paintMenu==='open', 'paintMenuClose':this.paintMenu==='close', 'paintMenuInitial':this.paintMenu==='initial'}"
                 :style="{position: 'absolute', zIndex: '3', height: '100%', width: '100%'}">
-                    <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                        <div :style="{flex: 1}">
-                            Size
-                        </div>
-                        <div :style="{flex: 10, marginRight: '0.5vw'}">
-                            <input class='slider' step="0.1" min="1" max="10" type='range' v-model="SizeSlider">
-                        </div>
-                    </div>
-                    <br/>
-                    <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                        <div :style="{flex: 1}">
-                            R
-                        </div>
-                        <div :style="{flex: 10, marginRight: '0.5vw'}">
-                            <input class='slider' step="1" min="0" max="256" type='range' v-model="RSlider">
-                        </div>
-                    </div>
-                    <br/>
-                    <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                        <div :style="{flex: 1}">
-                            G
-                        </div>
-                        <div :style="{flex: 10, marginRight: '0.5vw'}">
-                            <input class='slider' step="1" min="0" max="256" type='range' v-model="GSlider">
-                        </div>
-                    </div>
-                    <br/>
-                    <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                        <div :style="{flex: 1}">
-                            B
-                        </div>
-                        <div :style="{flex: 10, marginRight: '0.5vw'}">
-                            <input class='slider' step="1" min="0" max="256" type='range' v-model="BSlider">
-                        </div>
-                    </div>
-                    <br/>
-                    <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                        <div :style="{flex: 1}">
-                            A
-                        </div>
-                        <div :style="{flex: 10, marginRight: '0.5vw'}">
-                            <input class='slider' step="0.01" min="0" max="1" type='range' v-model="ASlider">
-                        </div>
-                    </div>
+                    <div :style="{position: 'relative', height: '100%', width: '100%', pointerEvents: 'none'}">
 
-                    {{this.drawColor.drawReturn}}
+                        <div class='RpaletteSlider' :style="{marginLeft: '10%', width: '80%', pointerEvents: 'all'}">
+                            <el-slider :step="1" :min="0" :max="256"  v-model="RSlider"></el-slider>
+                        </div>
+
+                        <div class='GpaletteSlider' :style="{marginLeft: '10%', width: '80%', pointerEvents: 'all'}">
+                            <el-slider :step="1" :min="0" :max="256"  v-model="GSlider"></el-slider>
+                        </div>
+                        <div class='BpaletteSlider' :style="{marginLeft: '10%', width: '80%', pointerEvents: 'all'}">
+                            <el-slider :step="1" :min="0" :max="256"  v-model="BSlider"></el-slider>
+                        </div>
+
+                        <div class='ApaletteSlider' :style="{marginLeft: '10%', width: '80%', pointerEvents: 'all'}">
+                            <el-slider :step=".01" :min="0" :max="1"  v-model="ASlider"></el-slider>
+                        </div>
+                        
+                        <div :style="{marginLeft: '90%', pointerEvents: 'all'}">
+                            <el-slider :step=".01" :min="0" :max="10"  v-model="SizeSlider" vertical height="22.5vh"></el-slider>
+                        </div>
+
+                   
+                        <div :style="{position: 'absolute', zIndex: '5', top: '70%', color: drawColor.drawReturn, fontSize: `${SizeSlider*2}vh`, 
+                        textAlign: 'center', width: '100%', marginRight: `${SizeSlider*2}vh`, marginTop: `-${SizeSlider*1}vh`}">
+                            <font-awesome-icon icon="paint-brush"/>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,7 +140,7 @@ export default {
         GSlider: 100, 
         BSlider: 100, 
         ASlider: 0.5,
-        SizeSlider: 2,
+        SizeSlider: 5,
         paintMenu: 'initial', 
         paintButtonValue: 'palette', 
         canvasURL: null
@@ -281,75 +263,6 @@ export default {
             console.log('value of entirety of filesAdded[0]', filesAdded[0])
             this.submitDataRequest(this.canvasHash, "profileCanvas");
         })
-
-        // function getCanvasBlob(canvas) {
-        //     return new Promise(function(resolve, reject) {
-        //         canvas.toBlob(function(blob) {
-        //             console.log('inside canvas blob promise')
-        //             console.log('value of blob in promise: ', blob)
-        //             console.log('typeof blob in promise: ', typeof blob)
-        //             resolve(blob)
-        //         })
-        //     })
-        // }
-        // var canvasBlob = getCanvasBlob(c);
-
-        // console.log('canvasBlob: ', canvasBlob)
-        // console.log('typeof canvasBlob: ', typeof canvasBlob)
-        // canvasBlob.then((blob) => {
-        //     console.log('value of blob: ', blob)
-        //     console.log('typeof blob: ', typeof blob)
-        //     this.canvasNode.files.add([Buffer.from(blob)], {pin: true}, (err, filesAdded)=>{
-        //         if (err) { throw err }  
-        //         console.log('inside canvasNode.files.add');
-        //         this.canvasHash = filesAdded[0].hash;
-        //         console.log('and value of this.canvasHash is .... ', this.canvasHash)
-        //         this.submitDataRequest(this.canvasHash, "profileCanvas");
-        //     })
-        // }, function(err) {
-        //     console.log(err)
-        // });
-
-
-
-        // c.toBlob(blob=>{
-        //     console.log('value of blob: ', blob);
-        //     this.canvasNode.files.add([Buffer.from(blob)], {pin: true}, (err, filesAdded)=>{
-        //         if (err) { throw err }  
-        //         console.log('inside canvasNode.files.add');
-        //         this.canvasHash = filesAdded[0].hash;
-        //         console.log('and value of this.canvasHash is .... ', this.canvasHash)
-        //         this.submitDataRequest(this.canvasHash, "profileCanvas");
-        //     })
-            // console.log('inside c.toBlob')
-            // console.log('value of blob: ', blob)
-            // var canvasURL = URL.createObjectURL(blob);
-            // var base_image = new Image();
-            // base_image.onload = function() {
-            //     URL.revokeObjectURL(canvasURL);
-            // };
-            // base_image.src = canvasURL
-            // console.log('value of base_image after setting: ', base_image)
-            // console.log('done with toBlob')
-            // const blobFuncCheck = () => {
-            //     console.log('value of base_image: ', base_image);
-            //     if(base_image===null){
-            //         setTimeout(() => {
-            //             console.log('inside timeout again')
-            //             blobFuncCheck()
-            //         }, 100);
-            //     }else{
-            //         console.log('inside else')
-            //         this.canvasNode.files.add([blob], {pin: true}, (err, filesAdded)=>{
-            //             if (err) { throw err }  
-            //             this.canvasHash = filesAdded[0].hash;
-            //             console.log('and value of this.canvasHash is .... ', this.canvasHash)
-            //             this.submitDataRequest(this.canvasHash, "profileCanvas");
-            //         })
-            //     }
-            // }
-            // blobFuncCheck()
-        // })
     },
     draw: function (event) {
       // requestAnimationFrame(this.draw);
@@ -593,6 +506,51 @@ export default {
 }
 </script>
 
+
+<style>
+
+.RpaletteSlider .el-slider__bar{
+    background-color: red;
+}
+    
+.RpaletteSlider .el-slider__button{
+    border-color: red;
+    background-color: red;
+}
+
+.GpaletteSlider .el-slider__bar{
+    background-color: green;
+}
+    
+.GpaletteSlider .el-slider__button{
+    border-color: green;
+    background-color: green;
+}
+
+.BpaletteSlider .el-slider__bar{
+    background-color: blue;
+}
+    
+.BpaletteSlider .el-slider__button{
+    border-color: blue;
+    background-color: blue;
+}
+
+.ApaletteSlider .el-slider__bar{
+    background-color: grey;
+}
+    
+.ApaletteSlider .el-slider__button{
+    border-color: grey;
+    background-color: grey;
+}
+
+.VertSizeSlider .el_slider__runway{
+    height: 50px;
+}
+
+</style>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import '../../../assets/styles/screens/me.css';
@@ -722,6 +680,5 @@ export default {
 .crayonCursor{
     cursor:url(http://www.cursor.cc/cursor/263/42/cursor.png), auto; 
 }
-
 
 </style>

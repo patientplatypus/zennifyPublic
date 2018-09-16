@@ -181,51 +181,8 @@
                                     <el-radio-button label="monthly" class='noshadow'>monthly</el-radio-button>
                                     <el-radio-button label="yearly" class='noshadow'>yearly</el-radio-button>
                                 </el-radio-group>
-                                <!-- <div class='flexbox-container' :style="{flexDirection: 'row'}">
-                                    <div :style="{flex: 1}">
-                                        <label class="radioContainer">
-                                            weekly
-                                            <input type="radio" value="weekly" v-model="recurringCheck.payment">
-                                            <span class="checkmarkRadio"></span>
-                                        </label>
-                                    </div>
-                                    <div :style="{flex: 1}">
-                                        <label class="radioContainer">
-                                            monthly
-                                            <input type="radio" value="monthly" v-model="recurringCheck.payment">
-                                            <span class="checkmarkRadio"></span>
-                                        </label>
-                                    </div>
-                                    <div :style="{flex: 1}">
-                                        <label class="radioContainer">
-                                            yearly
-                                            <input type="radio" value="yearly" v-model="recurringCheck.payment">
-                                            <span class="checkmarkRadio"></span>
-                                        </label>
-                                    </div>
-                                </div> -->
                             </td>
                         </tr>
-                    
-
-                    <!-- <el-radio-group v-model="interestToggled" size="medium">
-                        <tr v-if="selectValues.loanType==='new loan'&&selectValues.expenseType==='loan'" class="spaceUnder">
-                            <td colspan='1' :style="{textAlign: 'right', marginRight: '10px'}">
-                                <el-radio-button label="oneMonth" class='noshadow'>one month</el-radio-button>
-                            </td>
-                            <td colspan='1' :style="{textAlign: 'left'}">
-                                <el-radio-button label="threeMonths" class='noshadow'>three months</el-radio-button>
-                            </td>
-                        </tr>
-                        <tr v-if="selectValues.loanType==='new loan'&&selectValues.expenseType==='loan'" class="spaceUnder">
-                            <td colspan='1' :style="{textAlign: 'right', marginRight: '10px'}">
-                                <el-radio-button label="sixMonths" class='noshadow'>six months</el-radio-button>
-                            </td>
-                            <td colspan='1' :style="{textAlign: 'left'}">
-                                <el-radio-button label="oneYear" class='noshadow'>twelve months</el-radio-button>
-                            </td>
-                        </tr>
-                    </el-radio-group> -->
 
                     <div v-if="selectValues.loanType==='recurring payment' || selectValues.loanType==='one time payment'" class="spaceUnder">
                          <div :style="{textAlign: 'right'}">
