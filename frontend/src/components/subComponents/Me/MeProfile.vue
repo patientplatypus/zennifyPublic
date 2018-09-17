@@ -17,11 +17,18 @@
             here is what is shared from your data with other users
         </div>
         <div class="wall">
-            <div :style="{position: 'relative', height: '100%', width: '100%', overflow: 'hidden'}">
+            <div :style="{position: 'relative', height: '100%', width: '100%', overflow: 'hidden', textAlign: 'center'}">
                 <canvas class="crayonCursor" id="canvas" v-on:mousedown="handleMouseDown" v-on:mouseup="handleMouseUp" v-on:mousemove="handleMouseMove"
-                :style="{position: 'absolute', zIndex: '1'}"
+                :style="{position: 'absolute', zIndex: '1', top: '0', left: '0'}"
                 >
                 </canvas>
+                <div v-if="showCanvas===false" :style="{width: '100%', height: '100%', position: 'absolute', zIndex: '10', background: 'rgb(73, 160, 120)'}">
+                    <div :style="{position: 'relative', marginTop: '20vh', marginLeft: '10vw'}">
+                        <div class='hexClip hexAbs mixBlend hexTrans1' :style="{background: 'rgba(25, 200, 25, 1)', height: '50px', width: '50px'}"/>
+                        <div class='hexClip hexAbs mixBlend hexTrans2' :style="{background: 'rgba(25, 200, 25, 1)', height: '50px', width: '50px'}"/>
+                        <div class='hexClip hexAbs mixBlend hexTrans3' :style="{background: 'rgba(25, 200, 25, 1)', height: '50px', width: '50px'}"/>
+                    </div>
+                </div>
                 <div :style="{position: 'absolute', zIndex: '6', pointerEvents: 'none', bottom: '5px', left: '5px'}">
                     <div v-if="paintButtonValue==='apply'" @click="paintMenuHandler" :style="{pointerEvents: 'all', cursor: 'pointer'}">
                         <font-awesome-icon icon="save" size="3x" :style="{color: 'var(--secondary2)'}"/>
@@ -143,7 +150,8 @@ export default {
         SizeSlider: 5,
         paintMenu: 'initial', 
         paintButtonValue: 'palette', 
-        canvasURL: null
+        canvasURL: null, 
+        showCanvas: false
       }
   }, 
   mounted: function(){
@@ -210,7 +218,37 @@ export default {
 
     const createIPFS = () => {
         // https://github.com/ipfs/js-ipfs/blob/master/examples/browser-webpack/src/components/app.js
-        this.msgNode = new IPFS({ repo: String('msg' + Math.random() + Date.now()) })
+            this.msgNode = new IPFS({
+                repo:  String('msg' + Math.random() + Date.now()),
+                EXPERIMENTAL: {
+                    pubsub: false
+                },
+                config: {
+                     "Bootstrap": [
+                        "/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3",
+                        "/dns4/sfo-3.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM",
+                        "/dns4/sgp-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu",
+                        "/dns4/nyc-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLueR4xBeUbY9WZ9xGUUxunbKWcrNFTDAadQJmocnWm",
+                        "/dns4/nyc-2.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64"
+                    ],
+                }
+            })
+            this.canvasNode = new IPFS({
+                repo: String('canvas' + Math.random() + Date.now()),
+                EXPERIMENTAL: {
+                    pubsub: false
+                },
+                config: {
+                     "Bootstrap": [
+                        "/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3",
+                        "/dns4/sfo-3.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM",
+                        "/dns4/sgp-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu",
+                        "/dns4/nyc-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLueR4xBeUbY9WZ9xGUUxunbKWcrNFTDAadQJmocnWm",
+                        "/dns4/nyc-2.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64"
+                    ],
+                }
+            })
+        // this.msgNode = new IPFS({ repo: String('msg' + Math.random() + Date.now()) })
 
         this.msgNode.once('ready', () => {
             console.log('IPFS message node is ready')
@@ -218,7 +256,7 @@ export default {
                 // ops()
         })
 
-        this.canvasNode = new IPFS({ repo: String('canvas' + Math.random() + Date.now()) })
+        // this.canvasNode = new IPFS({ repo: String('canvas' + Math.random() + Date.now()) })
 
         this.canvasNode.once('ready', () => {
             console.log('IPFS canvas node is ready')
@@ -255,7 +293,7 @@ export default {
 
         console.log('value of canvas buffer before adding to ipfs: ', buffer)
 
-        this.canvasNode.files.add(Buffer.from(buffer), {pin: false}, (err, filesAdded)=>{
+        this.canvasNode.files.add(Buffer.from(buffer), {pin: true}, (err, filesAdded)=>{
             if (err) { throw err }  
             console.log('inside canvasNode.files.add');
             this.canvasHash = filesAdded[0].hash;
@@ -451,6 +489,7 @@ export default {
                     console.log('value of hashVal: ', hashVal)
                     console.log('this.canvasNode.files')
                     console.log(this.canvasNode.files)
+                    this.showCanvas = true;
                     this.canvasNode.files.cat(hashVal, (err, data) => {
                         console.log('inside profile canvasNode file cat')
                         console.log('and value of data')
@@ -480,8 +519,9 @@ export default {
                             // console.log('value of alpha: ', data[i+3])
                         }
                         console.log('putting imageData to ctx:')
+                        
                         ctx.putImageData(imageData,0,0);
-
+                        this.showCanvas = true;
 
 
                         // var imageData = new Image()
@@ -679,6 +719,48 @@ export default {
 
 .crayonCursor{
     cursor:url(http://www.cursor.cc/cursor/263/42/cursor.png), auto; 
+}
+
+.hexClip{
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexAbs  {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.mixBlend{
+    mix-blend-mode: exclusion;
+}
+
+.hexTrans1 { 
+  transition: all 1s ease-in-out;
+  animation: ani 1.7s infinite;
+}
+
+.hexTrans2 { 
+  x-transition: all 1s ease-in-out;
+  animation: ani 2s infinite;
+}
+
+.hexTrans3 { 
+  x-transition: all 1s ease-in-out;
+  animation: ani 2.3s infinite;
+}
+
+@keyframes ani {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 50px;
+  }
+  100% {
+    left: 0;
+  }
 }
 
 </style>

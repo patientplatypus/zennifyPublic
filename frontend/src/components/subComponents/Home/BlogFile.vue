@@ -5,6 +5,15 @@
       Blog
     </h2>
     <h3>
+      September 16, 2018
+    </h3>
+    <p>
+      Morning - starting work, nothing to report. 
+    </p>
+    <p>
+      Evening - finished blog post, post in morning after edit then start working on cassandra messaging.
+    </p>
+    <h3>
       September 15, 2018
     </h3>
     <p>
