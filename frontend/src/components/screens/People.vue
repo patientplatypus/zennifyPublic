@@ -11,6 +11,7 @@
           </h3>
           <div v-for="(user, key) in usersList" :key="key">
             <div class='hoverClass' 
+            v-if="user!=email"
             :class="{'clickedClass': userClicked===user}"
             :style="{cursor: 'pointer'}" @click="userClickHandler(user)">
               {{user}}
@@ -23,31 +24,7 @@
           <h3>
             Profile
           </h3>
-        </div>
-      </div>
-      <div class="peopleMessage">
-        <div class='card1' :style="{height: '98.5%', width: '95%'}">
-          <h3>
-            Message
-          </h3>
-          <div v-if="userClicked!=null&&userClicked!=email" :style="{width: '100%'}">
-            <p>
-              Send {{userClicked}} a message!
-            </p>
-            <p>
-              Subject
-            </p>
-            <input class="input1" v-model="messageSubject"/>
-            <p>
-              Message
-            </p>
-            <textarea v-model="messageContent" :style="{height: '10vh', width: '98%'}">
-            </textarea>
-            <div class='button1' :style="{float: 'right'}" @click="sendMessageHandler">
-              send!
-            </div>
-          </div>
-          <div v-if="userClicked===email">
+          <div>
             <p>
               Here is your mail:
             </p>
@@ -86,6 +63,30 @@
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="peopleMessage">
+        <div class='card1' :style="{height: '98.5%', width: '95%'}">
+          <h3>
+            Message
+          </h3>
+          <div v-if="userClicked!=null&&userClicked!=email" :style="{width: '100%'}">
+            <p>
+              Send {{userClicked}} a message!
+            </p>
+            <p>
+              Subject
+            </p>
+            <input class="input1" v-model="messageSubject"/>
+            <p>
+              Message
+            </p>
+            <textarea v-model="messageContent" :style="{height: '10vh', width: '98%'}">
+            </textarea>
+            <div class='button1' :style="{float: 'right'}" @click="sendMessageHandler">
+              send!
             </div>
           </div>
         </div>
@@ -143,9 +144,24 @@ export default {
         var payload = {localJWT: this.localJWT}
         console.log('value of payload before sending: ', payload);
         this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
+        // this.getMailHandler();
+
       }
     }
     waitForJWT();
+
+
+    const waitForUsers = () => {
+      if(this.usersList === null || typeof this.localJWT === 'undefined' || this.localJWT===""){
+        setTimeout(() => {
+          waitForUsers()
+        }, 50);
+      }else{
+        this.getMailHandler();
+      }
+    }
+    waitForUsers();
+
 
     //HOW TO GET WEBASSEMBLY OFF THE GROUND WHEN THAT BECOMES IMPORTANT 
     // console.log('98237237492374923792347932 inside mounted!')
@@ -187,19 +203,6 @@ export default {
    ])
   },
   watch:{
-    userClicked: function(newVal, oldVal){
-      console.log('inside userClicked watcher')
-      if (newVal!=oldVal){
-        console.log('newVal userClicked: ', newVal)
-        if (newVal === this.email){
-          console.log('inside newVal === this.email for userClicked')
-          var urlKEY = "getMail"
-          var payload = {localJWT: this.localJWT, email: this.email}
-          console.log('value of payload before sending: ', payload);
-          this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
-        }
-      }
-    }
   },
   methods:{    
     ...mapActions([
@@ -225,6 +228,13 @@ export default {
         messageContent: this.messageContent.toString(), 
         messageSubject: this.messageSubject.toString()
       }
+      console.log('value of payload before sending: ', payload);
+      this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
+    }, 
+    getMailHandler: function(){
+      console.log('inside newVal === this.email for userClicked')
+      var urlKEY = "getMail"
+      var payload = {localJWT: this.localJWT, email: this.email}
       console.log('value of payload before sending: ', payload);
       this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
     }

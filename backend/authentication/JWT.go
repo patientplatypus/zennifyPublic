@@ -41,6 +41,7 @@ func keyRotator(tokenString string, JWTkeyLocal []byte)(*jwt.Token, error){
 }
 
 func ValidateJWT(tokenString string, prevKey bool, validateJWTChan chan bool){
+	fmt.Println("inside ValidateJWT function")
 	JWTkeyLocal := []byte("")
 	if prevKey == false{
 		JWTkeyLocal = JWTkey
@@ -50,7 +51,15 @@ func ValidateJWT(tokenString string, prevKey bool, validateJWTChan chan bool){
 
 	token, _ := keyRotator(tokenString, JWTkeyLocal)
 	
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+	fmt.Println("value of token")
+	fmt.Println(token)
+
+	claims, ok := token.Claims.(jwt.MapClaims);
+	fmt.Println("value of claims: ")
+	fmt.Println(claims)
+	fmt.Println("value of OK")
+	fmt.Println(ok)
+	if ok && token.Valid {
 		fmt.Println(claims["email"], claims["nbf"])
 		UserNotInDatabase, _ := data.Search_userinfo_table(claims["email"].(string))
 		if UserNotInDatabase == false{

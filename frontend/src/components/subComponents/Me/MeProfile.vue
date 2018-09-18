@@ -224,13 +224,12 @@ export default {
                     pubsub: false
                 },
                 config: {
-                     "Bootstrap": [
-                        "/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3",
-                        "/dns4/sfo-3.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM",
-                        "/dns4/sgp-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu",
-                        "/dns4/nyc-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLueR4xBeUbY9WZ9xGUUxunbKWcrNFTDAadQJmocnWm",
-                        "/dns4/nyc-2.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64"
-                    ],
+                    Addresses: {
+                    Swarm: [
+                        '/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star'
+                        // '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star'
+                        ]
+                    }
                 }
             })
             this.canvasNode = new IPFS({
@@ -239,13 +238,12 @@ export default {
                     pubsub: false
                 },
                 config: {
-                     "Bootstrap": [
-                        "/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3",
-                        "/dns4/sfo-3.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLPppuBtQSGwKDZT2M73ULpjvfd3aZ6ha4oFGL1KrGM",
-                        "/dns4/sgp-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu",
-                        "/dns4/nyc-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLueR4xBeUbY9WZ9xGUUxunbKWcrNFTDAadQJmocnWm",
-                        "/dns4/nyc-2.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64"
-                    ],
+                    Addresses: {
+                    Swarm: [
+                        '/ip4/127.0.0.1/tcp/9090/ws/p2p-websocket-star'
+                        // '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star'
+                        ]
+                    }
                 }
             })
         // this.msgNode = new IPFS({ repo: String('msg' + Math.random() + Date.now()) })
@@ -489,7 +487,6 @@ export default {
                     console.log('value of hashVal: ', hashVal)
                     console.log('this.canvasNode.files')
                     console.log(this.canvasNode.files)
-                    this.showCanvas = true;
                     this.canvasNode.files.cat(hashVal, (err, data) => {
                         console.log('inside profile canvasNode file cat')
                         console.log('and value of data')

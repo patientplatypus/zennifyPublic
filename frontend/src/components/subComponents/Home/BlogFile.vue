@@ -5,6 +5,15 @@
       Blog
     </h2>
     <h3>
+      September 17, 2018
+    </h3>
+    <p>
+      Morning - starting work, nothing to report.
+    </p>
+    <p>
+      Evening - worked on getting messages up - ongoing.
+    </p>
+    <h3>
       September 16, 2018
     </h3>
     <p>
