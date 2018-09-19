@@ -12,3 +12,4 @@ export const profileCanvas = state => state.profileCanvas;
 export const usersList = state => state.usersList;
 export const receivedMail = state => state.receivedMail;
 export const sentMail = state => state.sentMail;
+export const msgSentTime = state => state.msgSentTime;

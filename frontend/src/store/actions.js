@@ -23,7 +23,8 @@ const urlINDEX = {
     getHashMsg: urlSTRING + '/hash/getHashMsg',
     getUsers: urlSTRING + '/users/getUsers', 
     sendUserMsg: urlSTRING +  '/users/sendMsg', 
-    getMail: urlSTRING + '/users/getMail'   
+    getMail: urlSTRING + '/users/getMail', 
+    getMsg: urlSTRING + '/users/getMsg'
 }
 
 window.getCookie = function(name) {
@@ -99,6 +100,10 @@ export const Request = ({ commit }, {urlKEY, requestType, payload}) => {
             if (body.SentMail!=null&&body.SentMail!=undefined){
                 variableArray.push({variableName: 'sentMail', variableValue: body.SentMail})
             }
+
+            if (body.Status === 'MsgSent'){
+                variableArray.push({variableName: 'msgSentTime', variableValue: Date.now()})
+            }  
 
             commit('setMultiVarMutation', {variableArray})
         }

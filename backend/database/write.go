@@ -5,6 +5,7 @@ import(
 	"fmt"
 	"log"
 	"time"
+	"strconv"
 	"net/http"
 	"encoding/json"
 	// "database/sql"
@@ -264,7 +265,11 @@ func Write_msg_table(msgChannel chan string, req *http.Request){
 
 	updateString:=`UPDATE cassmessage SET messagefrom='`+sendMsgReq.MessageFrom+`', messagecontent='`+sendMsgReq.MessageContent+`' WHERE messageto='`+sendMsgReq.MessageTo+`'`
 
-	insertString:=`INSERT INTO cassmessage (messagefrom, messageto, messagecontent, messagesubject, uniqueID) VALUES('`+sendMsgReq.MessageFrom+`', '`+sendMsgReq.MessageTo+`', '`+sendMsgReq.MessageContent+`', '` +sendMsgReq.MessageSubject+`', '`+time.Now().String()+`')`
+	// timeString, _ := strconv.ParseInt(time.Now().UnixNano(), 10, 64)
+
+	timeString := strconv.FormatInt(time.Now().UnixNano(), 10)
+
+	insertString:=`INSERT INTO cassmessage (messagefrom, messageto, messagecontent, messagesubject, uniqueID) VALUES('`+sendMsgReq.MessageFrom+`', '`+sendMsgReq.MessageTo+`', '`+sendMsgReq.MessageContent+`', '` +sendMsgReq.MessageSubject+`', '`+timeString+`')`
 
 	fmt.Println("updateString value: ", updateString)
 	fmt.Println("insertString value: ", insertString)

@@ -22,7 +22,8 @@ const state = {
     email: '',
     localJWT: '', 
     siteName: '',
-    loggedIn: false
+    loggedIn: false, 
+    msgSentTime: null
 }
   
 const store = new Vuex.Store({

@@ -4,7 +4,9 @@ import(
 	// standard library
 	"fmt"
 	"log"
+	// "time"
 	"net/http"
+	"sort"
 	"encoding/json"
 	// "database/sql"
 	// other libraries
@@ -34,6 +36,10 @@ type getHashReq struct{
 
 type mailReq struct{
 	Email string `json:"email"`
+}
+
+type msgReq struct {
+	ID string `json:"ID"`
 }
 
 
@@ -174,20 +180,22 @@ func Retrieve_mail(mailChannel chan util.ReturnMessages, req *http.Request)(){
 	var messageto string
 	var messagesubject string
 	var messagefrom string
+	var uniqueID string
 
 	var newSentMail []util.Mail
 	var newReceivedMail []util.Mail
 
-	iterC := util.CassSession.Query(`SELECT messageto, messagefrom, messagesubject FROM cassmessage`).Iter()
-    for iterC.Scan(&messageto, &messagefrom, &messagesubject) {
+	iterC := util.CassSession.Query(`SELECT messageto, messagefrom, messagesubject, uniqueID FROM cassmessage`).Iter()
+    for iterC.Scan(&messageto, &messagefrom, &messagesubject, &uniqueID) {
 		fmt.Println("value of messageto: ", messageto)
-		fmt.Println("vale of messagefrom: ", messagefrom)
+		fmt.Println("value of messagefrom: ", messagefrom)
+		fmt.Println("value of uniqueID: ", uniqueID)
 		if messageto == mailReq.Email{
-			newMail := util.Mail{Header: messageto, Subject:messagesubject}
+			newMail := util.Mail{Header: messageto, Subject:messagesubject, ID: uniqueID}
 			fmt.Println("value of newMail: ", newMail)
 			newReceivedMail = append(newReceivedMail, newMail)
 		}else if messagefrom == mailReq.Email{
-			newMail := util.Mail{Header: messageto, Subject:messagesubject}
+			newMail := util.Mail{Header: messageto, Subject:messagesubject, ID: uniqueID}
 			fmt.Println("value of newMail: ", newMail)
 			newSentMail = append(newSentMail, newMail)
 		}
@@ -198,6 +206,15 @@ func Retrieve_mail(mailChannel chan util.ReturnMessages, req *http.Request)(){
 	fmt.Println("after iterC Scan for and value of newReceivedMail")
 	fmt.Println(newReceivedMail)
 
+	sort.Slice(newSentMail, func(i, j int) bool {return newSentMail[i].ID > newSentMail[j].ID}) 
+	sort.Slice(newReceivedMail, func(i, j int) bool {return newReceivedMail[i].ID > newReceivedMail[j].ID}) 
+
+	fmt.Println("after iterC Scan for and value of newSentMail AFTER SORT")
+	fmt.Println(newSentMail)
+	fmt.Println("after iterC Scan for and value of newReceivedMail AFTER SORT")
+	fmt.Println(newReceivedMail)
+
+
 	messagesReturned := util.ReturnMessages{SentMail: newSentMail, ReceivedMail: newReceivedMail}
 
 	fmt.Println("value of newMessagesToReturn")
@@ -206,3 +223,28 @@ func Retrieve_mail(mailChannel chan util.ReturnMessages, req *http.Request)(){
 	
 	mailChannel <- messagesReturned
 }
+
+func Retrieve_msg(mailMsgChannel chan util.ReturnMsg, req *http.Request){
+	fmt.Println("inside Retrieve_msg")
+	var msgReq msgReq
+	_ = json.NewDecoder(req.Body).Decode(&msgReq)
+
+	util.CassSession, _ = util.CassCluster.CreateSession()
+	defer util.CassSession.Close()
+	keySpaceMeta, _ := util.CassSession.KeyspaceMetadata("platypus")
+	valC, exists := keySpaceMeta.Tables["cassmessage"]
+	fmt.Println(valC, exists)
+
+	var messagecontent string
+	var returnMsg util.ReturnMsg
+	fmt.Println("value of msgReq.ID: ", msgReq.ID)
+	queryString := `SELECT messagecontent from cassmessage WHERE uniqueID='`+msgReq.ID+`' allow filtering;`
+	fmt.Println("value of queryString in Retrieve_msg: ", queryString)
+	iterC := util.CassSession.Query(queryString).Iter()
+	for iterC.Scan(&messagecontent){
+		fmt.Println("value of messagecontent: ", messagecontent)
+			returnMsg = util.ReturnMsg{Subject: "returnMsg", Content: messagecontent, ID: msgReq.ID}
+	}
+	mailMsgChannel <- returnMsg  
+}
+

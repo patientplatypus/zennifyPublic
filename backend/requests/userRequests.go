@@ -31,7 +31,7 @@ func SendMsg(w http.ResponseWriter, req *http.Request){
 	msgRet := <-msgChannel //blocking return
 	fmt.Println("value of msgRet, ", msgRet);
 
-	util.HandleRequestResponse(w, "Success", "Success")
+	util.HandleRequestResponse(w, "MsgSent", "Success")
 }
 
 func GetMail(w http.ResponseWriter, req *http.Request){
@@ -46,3 +46,17 @@ func GetMail(w http.ResponseWriter, req *http.Request){
 
 	// util.HandleRequestResponse(w, "Success", "Success")
 }
+
+func GetMsg(w http.ResponseWriter, req *http.Request){
+	fmt.Println("inside GetMsg")
+
+	mailMsgChannel := make(chan util.ReturnMsg)
+	go data.Retrieve_msg(mailMsgChannel, req)
+	msgRet := <- mailMsgChannel //blocking return
+	fmt.Println("value of msgRet, ", msgRet);
+
+	json.NewEncoder(w).Encode(msgRet)	
+
+	// util.HandleRequestResponse(w, "Success", "Success")
+}
+

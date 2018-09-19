@@ -36,7 +36,7 @@
                 <div class='hoverClass' 
                 :class="{'clickedClass': messageClicked===sent}"
                 :style="{cursor: 'pointer'}"
-                @click="messageClickHandler(sent)">
+                @click="messageClickHandler(sent, 'sent')">
                   <p>
                     to: {{sent.Header}}
                   </p>
@@ -54,7 +54,7 @@
                 <div class='hoverClass'
                 :class="{'clickedClass': messageClicked===received}"
                 :style="{cursor: 'pointer'}"
-                @click="messageClickHandler(received)">
+                @click="messageClickHandler(received, 'received')">
                   <p>
                     to: {{received.Header}}
                   </p>
@@ -199,7 +199,8 @@ export default {
      'usersList', 
      'email', 
      'sentMail', 
-     'receivedMail'
+     'receivedMail', 
+     'msgSentTime'
    ])
   },
   watch:{
@@ -207,6 +208,7 @@ export default {
   methods:{    
     ...mapActions([
         'Request',
+        "setSingleVar"
     ]),
     addOne:function(){
       console.log(this.addFunc);
@@ -215,8 +217,16 @@ export default {
     userClickHandler: function(user){
       this.userClicked = user;
     }, 
-    messageClickHandler: function(msg){
+    messageClickHandler: function(msg, msgType){
+      console.log('inside messageClickHandler')
       this.messageClicked = msg;
+      var urlKEY = 'getMsg';
+      console.log('value of msg: ', msg)
+      var payload = {
+        localJWT: this.localJWT,
+        ID: msg.ID
+      };
+      this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
     },
     sendMessageHandler: function(){
       console.log('inside sendMessageHandler')
@@ -230,6 +240,21 @@ export default {
       }
       console.log('value of payload before sending: ', payload);
       this.Request({urlKEY: urlKEY, requestType:'post', payload: payload})
+
+      const checkMsgSentTime = () => {
+        console.log("inside checkMsgSentTime")
+        console.log("value of Date.now(): ", Date.now())
+        console.log("value of this.msgSentTime: ", this.msgSentTime);
+        if(this.msgSentTime === null || typeof this.msgSentTime == 'undefined' || Date.now()<this.msgSentTime+100){
+          setTimeout(() => {
+            checkMsgSentTime()
+          }, 20);
+        }else{
+          this.setSingleVar({variableName: 'msgSentTime', variableValue: null})
+          this.getMailHandler();
+        }
+      }
+      checkMsgSentTime();
     }, 
     getMailHandler: function(){
       console.log('inside newVal === this.email for userClicked')

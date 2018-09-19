@@ -133,8 +133,7 @@ func main() {
 	u.HandleFunc("/getUsers", reqt.GetUsers)
 	u.HandleFunc("/sendMsg", reqt.SendMsg)
 	u.HandleFunc("/getMail", reqt.GetMail)
-	
-
+	u.HandleFunc("/getMsg", reqt.GetMsg)
 
 
 	JWTMux := JWTHandler(r)
