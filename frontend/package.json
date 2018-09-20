@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "@fortawesome/vue-fontawesome": "^0.1.1",
@@ -25,12 +26,13 @@
     "glamor": "^2.20.40",
     "glamorous": "^4.13.1",
     "highlightjs": "^9.10.0",
+    "i": "^0.3.6",
     "ipfs": "^0.32.0",
     "ipfs-pubsub-room": "^1.4.0",
     "libp2p": "^0.23.1",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "npm": "^6.4.0",
+    "npm": "^6.4.1",
     "orbit-db": "^0.19.9",
     "p5": "^0.7.1",
     "postcss-loader": "^3.0.0",
