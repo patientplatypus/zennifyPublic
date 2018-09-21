@@ -134,6 +134,11 @@ export default {
   },
   mounted: function() {
 
+    // setTimeout(()=>{
+    //   console.log('starting con websocket after timeout')
+    var conn = new WebSocket("ws://localhost:4000/ws");
+    // }, 5000)
+    
     const waitForJWT = () => {
       if(this.localJWT === null || typeof this.localJWT === 'undefined' || this.localJWT===""){
         setTimeout(() => {

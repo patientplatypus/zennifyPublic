@@ -135,7 +135,6 @@ func main() {
 	u.HandleFunc("/getMail", reqt.GetMail)
 	u.HandleFunc("/getMsg", reqt.GetMsg)
 
-
 	JWTMux := JWTHandler(r)
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"http://localhost:8081"},

@@ -52,6 +52,28 @@ services:
       - cassandra00
     volumes:
       - ./:/go/src/github.com/patientplatypus/webserver/
+  socket: 
+    restart: always
+    build: ./websocket
+    expose: 
+      - '4000'
+    ports: 
+      - 4000:4000
+    depends_on:
+      - db
+      - cassandra00
+      - app
+    links:
+      - db
+      - cassandra00
+      - app  
+    volumes: 
+      - ./websocket:/go/src/github.com/patientplatypus/webserver/websocket
+    command: bash -c 'sleep 180; realize start --run'
+
+
+
+
 
 #networks don't appear to do anything so i commented them out
 
