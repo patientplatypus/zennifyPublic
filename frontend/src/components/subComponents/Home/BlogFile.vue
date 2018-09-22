@@ -5,6 +5,15 @@
       Blog
     </h2>
     <h3>
+      September 21, 2018
+    </h3>
+    <p>
+      Morning - began work, nothing to report.
+    </p>
+    <p>
+      Evening - moved the needle.
+    </p>
+    <h3>
       September 20, 2018
     </h3>
     <p>
