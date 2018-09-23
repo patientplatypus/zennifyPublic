@@ -5,6 +5,15 @@
       Blog
     </h2>
     <h3>
+      September 22, 2018
+    </h3>
+    <p>
+      Morning - began work, nothing to report.
+    </p>
+    <p>
+      Evening - work done, pushed needle.
+    </p>
+    <h3>
       September 21, 2018
     </h3>
     <p>
